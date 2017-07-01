@@ -9,6 +9,6 @@ Improved Magento 2 contact us module.
 ```bash
 cd <magento_root>
 composer require omer/contact:dev-master --prefer-source
-bin/magento module:enable 
+bin/magento module:enable Omer_Contact
 bin/magento setup:upgrade
 ```
