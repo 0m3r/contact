@@ -4,11 +4,12 @@
  * @category  Omer
  * @package   Omer\Contact
  * @author    Alexander Kras'ko <0m3r.mail@gmail.com>
- * @copyright 2017 
+ * @copyright 2017
  * @license   Open Software License ("OSL") v. 3.0
  */
 namespace Omer\Contact\Setup;
 
+use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -43,7 +44,7 @@ class InstallSchema implements InstallSchemaInterface
                 'nullable'  => false,
             ], 'Name')
             ->addColumn('email', Table::TYPE_TEXT, 128, [
-                'nullable'  => false,                
+                'nullable'  => false,
             ], 'Email')
             ->addColumn('telephone', Table::TYPE_TEXT, 16, [
                 'nullable'  => false,
@@ -51,7 +52,7 @@ class InstallSchema implements InstallSchemaInterface
             ], 'Email')
             ->addColumn('comment', Table::TYPE_TEXT, null, [
                 'nullable'  => false,
-            ], 'Text')          
+            ], 'Text')
             ->addColumn('customer_id', Table::TYPE_INTEGER, 10, [
                 'unsigned'  => true,
                 'nullable'  => true,
@@ -59,12 +60,12 @@ class InstallSchema implements InstallSchemaInterface
             ], 'Customer Id')
             ->addColumn('status', Table::TYPE_SMALLINT, 1, [
                 'nullable'  => false,
-                'default'  => 1, //@todo get right default status 
+                'default'  => 1, //@todo get right default status
             ], 'Status')
             ->addColumn('store_id', Table::TYPE_SMALLINT, 5, [
                 'unsigned'  => true,
                 'nullable'  => false,
-            ], 'Store Id')            
+            ], 'Store Id')
             ->addColumn('created', Table::TYPE_DATETIME, null, [
                 'nullable'  => true,
                 'default'  => null,
