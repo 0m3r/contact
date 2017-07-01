@@ -49,10 +49,10 @@ class InstallSchema implements InstallSchemaInterface
             ->addColumn('telephone', Table::TYPE_TEXT, 16, [
                 'nullable'  => false,
                 'default'  => '',
-            ], 'Email')
+            ], 'Telephone')
             ->addColumn('comment', Table::TYPE_TEXT, null, [
                 'nullable'  => false,
-            ], 'Text')
+            ], 'Comment')
             ->addColumn('customer_id', Table::TYPE_INTEGER, 10, [
                 'unsigned'  => true,
                 'nullable'  => true,
@@ -99,10 +99,10 @@ class InstallSchema implements InstallSchemaInterface
             ->addIndex(
                 $setup->getIdxName(
                     $installer->getTable($tableName),
-                    ['text'],
+                    ['comment'],
                     AdapterInterface::INDEX_TYPE_FULLTEXT
                 ),
-                ['text'],
+                ['comment'],
                 ['type' => AdapterInterface::INDEX_TYPE_FULLTEXT]
             );
         $installer->getConnection()->createTable($table);
