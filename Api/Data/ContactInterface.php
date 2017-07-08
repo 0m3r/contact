@@ -17,16 +17,20 @@ namespace Omer\Contact\Api\Data;
  */
 interface ContactInterface
 {
-    const ID = 'id';
-    const NAME = 'name';
-    const EMAIL = 'email';
-    const TELEPHONE = 'telephone';
-    const COMMENT = 'comment';
+    const ID          = 'id';
+    const NAME        = 'name';
+    const EMAIL       = 'email';
+    const TELEPHONE   = 'telephone';
+    const COMMENT     = 'comment';
     const CUSTOMER_ID = 'customer_id';
-    const STATUS = 'status';
-    const STORE_ID = 'store_id';
-    const CREATED = 'created';
-    const UPDATE = 'update';
+    const STATUS      = 'status';
+    const STORE_ID    = 'store_id';
+    const CREATED     = 'created';
+    const UPDATE      = 'update';
+
+    const STATUS_PENDING  = 1;
+    const STATUS_APPROVED = 2;
+    const STATUS_CLOSE    = 4;
 
     /**
      * Get id

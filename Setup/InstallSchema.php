@@ -14,6 +14,7 @@ use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
+use Omer\Contact\Api\Data\ContactInterface;
 
 /**
  *
@@ -60,7 +61,7 @@ class InstallSchema implements InstallSchemaInterface
             ], 'Customer Id')
             ->addColumn('status', Table::TYPE_SMALLINT, 1, [
                 'nullable'  => false,
-                'default'  => 1, //@todo get right default status
+                'default'  => ContactInterface::STATUS_PENDING,
             ], 'Status')
             ->addColumn('store_id', Table::TYPE_SMALLINT, 5, [
                 'unsigned'  => true,
