@@ -10,6 +10,7 @@
 namespace Omer\Contact\Model;
 
 use Omer\Contact\Api\Data\ContactInterface;
+use Omer\Contact\Model\ResourceModel\Contact as ContactResourceModel;
 use Magento\Framework\DataObject\IdentityInterface;
 
 /**
@@ -38,13 +39,38 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements ContactI
     protected $_eventPrefix = 'omer_contact';
 
     /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
+     */
+    protected $dateFactory;
+
+    /**
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+        $this->dateFactory = $dateFactory;
+    }
+
+    /**
      * Initialize resource model
      *
      * @return void
      */
     protected function _construct()
     {
-        $this->_init('Omer\Contact\Model\ResourceModel\Contact');
+        $this->_init(ContactResourceModel::class);
     }
 
     /**
@@ -138,23 +164,23 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements ContactI
     }
 
     /**
-     * Get created
+     * Get created_at
      *
      * @return string
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->getData(self::CREATED);
+        return $this->getData(self::CREATED_AT);
     }
 
     /**
-     * Get update
+     * Get updated_at
      *
      * @return string
      */
-    public function getUpdate()
+    public function getUpdatedAt()
     {
-        return $this->getData(self::UPDATE);
+        return $this->getData(self::UPDATED_AT);
     }
 
     /**
@@ -246,24 +272,40 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements ContactI
     }
 
     /**
-     * Set created
+     * Set created_at
      *
-     * @param string $created
+     * @param string $createdAt
      * @return \Omer\Contact\Api\Data\ContactInterface
      */
-    public function setCreated($created)
+    public function setCreatedAt($createdAt)
     {
-        return $this->setData(self::CREATED, $created);
+        return $this->setData(self::CREATED_AT, $createdAt);
     }
 
     /**
-     * Set update
+     * Set updated_at
      *
-     * @param string $update
+     * @param string $updatedAt
      * @return \Omer\Contact\Api\Data\ContactInterface
      */
-    public function setUpdate($update)
+    public function setUpdatedAt($updatedAt)
     {
-        return $this->setData(self::UPDATE, $update);
+        return $this->setData(self::UPDATE_AT, $updatedAt);
+    }
+
+    /**
+     * Set updated_at and created_at parameter
+     *
+     * @return \Magento\Framework\Model\AbstractModel
+     */
+    public function beforeSave()
+    {
+        $date = $this->dateFactory->create()->gmtDate();
+        if ($this->isObjectNew() && !$this->getCreatedAt()) {
+            $this->setCreatedAt($date);
+        }
+        $this->setUpdatedAt($date);
+
+        return parent::beforeSave();
     }
 }

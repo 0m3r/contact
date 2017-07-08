@@ -67,11 +67,11 @@ class InstallSchema implements InstallSchemaInterface
                 'unsigned'  => true,
                 'nullable'  => false,
             ], 'Store Id')
-            ->addColumn('created', Table::TYPE_DATETIME, null, [
+            ->addColumn('created_at', Table::TYPE_DATETIME, null, [
                 'nullable'  => true,
                 'default'  => null,
             ], 'Created Time')
-            ->addColumn('update', Table::TYPE_DATETIME, null, [
+            ->addColumn('updated_at', Table::TYPE_DATETIME, null, [
                 'nullable'  => true,
                 'default'  => null,
             ], 'Update Time')

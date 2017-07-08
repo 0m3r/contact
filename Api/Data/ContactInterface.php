@@ -25,8 +25,8 @@ interface ContactInterface
     const CUSTOMER_ID = 'customer_id';
     const STATUS      = 'status';
     const STORE_ID    = 'store_id';
-    const CREATED     = 'created';
-    const UPDATE      = 'update';
+    const CREATED_AT  = 'created_at';
+    const UPDATED_AT  = 'updated_at';
 
     const STATUS_PENDING  = 1;
     const STATUS_APPROVED = 2;
@@ -89,18 +89,18 @@ interface ContactInterface
     public function getStoreId();
 
     /**
-     * Get created
+     * Get created_at
      *
      * @return string
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
-     * Get update
+     * Get updated_at
      *
      * @return string
      */
-    public function getUpdate();
+    public function getUpdatedAt();
 
 
     /**
@@ -168,18 +168,18 @@ interface ContactInterface
     public function setStoreId($storeId);
 
     /**
-     * Set created
+     * Set created_at
      *
-     * @param string $created
+     * @param string $createdAt
      * @return \Omer\Contact\Api\Data\ContactInterface
      */
-    public function setCreated($created);
+    public function setCreatedAt($createdAt);
 
     /**
-     * Set update
+     * Set updated_at
      *
-     * @param string $update
+     * @param string $updatedAt
      * @return \Omer\Contact\Api\Data\ContactInterface
      */
-    public function setUpdate($update);
+    public function setUpdatedAt($updatedAt);
 }
