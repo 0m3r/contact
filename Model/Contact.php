@@ -290,7 +290,7 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements ContactI
      */
     public function setUpdatedAt($updatedAt)
     {
-        return $this->setData(self::UPDATE_AT, $updatedAt);
+        return $this->setData(self::UPDATED_AT, $updatedAt);
     }
 
     /**
