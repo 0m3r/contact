@@ -13,6 +13,12 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ *
+ * @category  Omer
+ * @package   Omer\Contact
+ * @author    Alexander Kras'ko <0m3r.mail@gmail.com>
+ */
 class Index extends Action
 {
     /**

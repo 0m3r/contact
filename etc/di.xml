@@ -11,29 +11,4 @@
             <argument name="resourceModel" xsi:type="string">Omer\Contact\Model\ResourceModel\Contact</argument>
         </arguments>
     </type>
-
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="omer_contact_listing_data_source" xsi:type="string">Omer\Contact\Model\ResourceModel\Contact\Grid\Collection</item>
-            </argument>
-        </arguments>
-    </type>
-
-    <virtualType name="ContactMessageGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
-        <arguments>
-            <argument name="appliers" xsi:type="array">
-                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
-                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <virtualType name="ContactMessageGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
-        <arguments>
-            <argument name="collection" xsi:type="object" shared="false">Omer\Contact\Model\ResourceModel\Contact\Collection</argument>
-            <argument name="filterPool" xsi:type="object" shared="false">ContactMessageGridFilterPool</argument>
-        </arguments>
-    </virtualType>
-
 </config>
