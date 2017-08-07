@@ -76,7 +76,7 @@ class Save extends Action
 
                 $messageModel->save();
                 $this->messageManager->addSuccess(__('The record has been saved.'));
-                $this->_objectManager->get(\Magento\Backend\Model\Session::class)->setFormData(false);
+                $this->_getSession()->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['id' => $messageModel->getId(), '_current' => true]);
                 }

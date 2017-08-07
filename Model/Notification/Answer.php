@@ -51,7 +51,6 @@ class Answer implements ObserverInterface
      */
     protected $authSession;
 
-
     /**
      * Initialize dependencies.
      *
@@ -89,8 +88,8 @@ class Answer implements ObserverInterface
         $message = $observer->getEvent()->getMessage();
         $answer  = $observer->getEvent()->getAnswer();
 
-        $id = $request->getParam('id');
-        $message->load($id);
+        $messageId = $request->getParam('id');
+        $message->load($messageId);
         if (!$message->getId() || empty($answer)) {
             return $this;
         }
@@ -102,7 +101,7 @@ class Answer implements ObserverInterface
 
         $adminUser = $this->authSession->getUser();
         $from = ['email' => $adminUser->getEmail(), 'name' => $adminUser->getUsername()];
-        $to = ['email' => $message->getEmail(), 'name' => $message->getName()];
+        $toArray = ['email' => $message->getEmail(), 'name' => $message->getName()];
 
         $templateId = 'omer_contact_fast_answer';
 
@@ -121,7 +120,7 @@ class Answer implements ObserverInterface
             ])
             ->setTemplateVars($vars)
             ->setFrom($from)
-            ->addTo($to['email'], $to['name'])
+            ->addTo($toArray['email'], $toArray['name'])
             ->getTransport();
         $transport->sendMessage();
         $this->inlineTranslation->resume();

@@ -12,6 +12,7 @@ namespace Omer\Contact\Controller\Adminhtml\Message;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Omer\Contact\Model\ContactFactory;
 
 /**
  *
@@ -34,17 +35,25 @@ class Edit extends Action
     protected $coreRegistry;
 
     /**
+     * @var ContactFactory
+     */
+    protected $contactFactory;
+
+    /**
      * @param Context $context
      * @param PageFactory $resultPageFactory
+     * @param ContactFactory $contactFactory
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
-        \Magento\Framework\Registry $coreRegistry
+        \Magento\Framework\Registry $coreRegistry,
+        ContactFactory $contactFactory
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->coreRegistry = $coreRegistry;
+        $this->contactFactory = $contactFactory;
     }
 
     /**
@@ -62,7 +71,7 @@ class Edit extends Action
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
-        $modelMessage = $this->_objectManager->create(\Omer\Contact\Model\Contact::class);
+        $modelMessage = $this->contactFactory->create();
 
         if ($id) {
             $modelMessage->load($id);
@@ -78,9 +87,7 @@ class Edit extends Action
             return $resultRedirect->setPath('*/*/');
         }
 
-        $sessionData = $this->_objectManager
-            ->get(\Magento\Backend\Model\Session::class)
-            ->getFormData(true);
+        $sessionData = $this->_getSession()->getFormData(true);
         if (!empty($sessionData)) {
             $modelMessage->setData($sessionData);
         }
@@ -90,7 +97,6 @@ class Edit extends Action
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Omer_Contact::message');
         $resultPage->addBreadcrumb(__('Edit Contact Us Message'), __('Edit Contact Us Message'));
-        // $resultPage->getConfig()->getTitle()->prepend(__('Contact Us Messages'));
 
         return $resultPage;
     }

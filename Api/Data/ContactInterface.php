@@ -102,7 +102,6 @@ interface ContactInterface
      */
     public function getUpdatedAt();
 
-
     /**
      * Set id
      *
