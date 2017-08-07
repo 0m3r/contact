@@ -53,6 +53,8 @@ class Delete extends Action
         if ($messageModel->getId()) {
             $messageModel->delete();
             $this->messageManager->addSuccess(__('The record was deleted.'));
+        } else {
+            $this->messageManager->addError(__('This block no longer exists.'));
         }
 
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -60,6 +62,11 @@ class Delete extends Action
         return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
     }
 
+    /**
+     * Check admin permissions for this controller
+     *
+     * @return boolean
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Omer_Contact::delete');

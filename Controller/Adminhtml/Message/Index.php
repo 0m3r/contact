@@ -55,6 +55,11 @@ class Index extends Action
         return $resultPage;
     }
 
+    /**
+     * Check admin permissions for this controller
+     *
+     * @return boolean
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Omer_Contact::message');

@@ -62,8 +62,13 @@ class MassDelete extends Action
         return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
     }
 
+    /**
+     * Check admin permissions for this controller
+     *
+     * @return boolean
+     */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Omer_Contact::message');
+        return $this->_authorization->isAllowed('Omer_Contact::delete');
     }
 }

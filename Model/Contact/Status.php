@@ -29,7 +29,7 @@ class Status implements OptionSourceInterface
     {
         return [
             ContactInterface::STATUS_PENDING  => __('Pending'),
-            ContactInterface::STATUS_ANSWERED => __('Ansvered'),
+            ContactInterface::STATUS_ANSWERED => __('Answered'),
             ContactInterface::STATUS_CLOSE    => __('Close')
         ];
     }

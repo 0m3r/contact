@@ -1,0 +1,25 @@
+<!--@subject Your comment was answered on {{var store.getFrontendName()}} @-->
+<!--@vars {
+"var comment":"Question",
+"var answer":"Answer"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr class="email-information">
+        <td>
+            <table class="message-info">
+                <tr>
+                    <td>
+                        <p class="greeting">{{trans "Dear"}} {{var user_name}},</p>
+                        <p>{{trans "New answer was just posted to your comment regarding"}}
+                        <p>{{trans "Your ask:"}}{{var comment}}</p>
+                        <p>{{trans "Answer:"}}{{var answer}}</p>
+                        <p>{{trans "Thank you again"}},<strong>{{var store.getFrontendName()}}</strong></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}
