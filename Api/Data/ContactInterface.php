@@ -29,7 +29,7 @@ interface ContactInterface
     const UPDATED_AT  = 'updated_at';
 
     const STATUS_PENDING  = 1;
-    const STATUS_APPROVED = 2;
+    const STATUS_ANSWERED = 2;
     const STATUS_CLOSE    = 4;
 
     /**

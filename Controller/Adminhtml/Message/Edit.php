@@ -55,7 +55,7 @@ class Edit extends Action
         return $this->_authorization->isAllowed('Omer_Contact::message');
     }
     /**
-     * Index action
+     * Edit action
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
@@ -76,6 +76,13 @@ class Edit extends Action
             /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultRedirectFactory->create();
             return $resultRedirect->setPath('*/*/');
+        }
+
+        $sessionData = $this->_objectManager
+            ->get(\Magento\Backend\Model\Session::class)
+            ->getFormData(true);
+        if (!empty($sessionData)) {
+            $modelMessage->setData($sessionData);
         }
 
         $this->coreRegistry->register('contact_message', $modelMessage);

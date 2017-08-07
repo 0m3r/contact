@@ -4,7 +4,10 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Omer_Contact::general" title="Omer Contact Us" sortOrder="51">
-                    <resource id="Omer_Contact::message" title="Messages" sortOrder="10"/>
+                    <resource id="Omer_Contact::message" title="Messages" sortOrder="10">
+                        <resource id="Omer_Contact::save" title="Save" sortOrder="10" />
+                        <resource id="Omer_Contact::delete" title="Delete" sortOrder="20" />
+                    </resource>
                 </resource>
             </resource>
         </resources>

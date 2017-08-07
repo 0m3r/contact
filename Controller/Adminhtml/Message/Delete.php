@@ -20,7 +20,7 @@ use Omer\Contact\Model\ContactFactory;
  * @package   Omer\Contact
  * @author    Alexander Kras'ko <0m3r.mail@gmail.com>
  */
-class MassDelete extends Action
+class Delete extends Action
 {
     /**
      * @var ContactFactory
@@ -40,23 +40,21 @@ class MassDelete extends Action
     }
 
     /**
-     * Mass delete action
+     * Delete action
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
     public function execute()
     {
-        $messageIds = $this->getRequest()->getParam('ids');
-        $messageIds = explode(',', $messageIds);
+        $messageId = $this->getRequest()->getParam('id');
 
-        foreach ($messageIds as $messageId) {
-            $messageModel = $this->contactFactory->create();
-            $messageModel->load($messageId);
-            if ($messageModel->getId()) {
-                $messageModel->delete();
-            }
+        $messageModel = $this->contactFactory->create();
+        $messageModel->load($messageId);
+        if ($messageModel->getId()) {
+            $messageModel->delete();
+            $this->messageManager->addSuccess(__('The record was deleted.'));
         }
-        $this->messageManager->addSuccess(__('Total of %1 record(s) were deleted.', count($messageIds)));
+
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
@@ -64,6 +62,6 @@ class MassDelete extends Action
 
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Omer_Contact::message');
+        return $this->_authorization->isAllowed('Omer_Contact::delete');
     }
 }
